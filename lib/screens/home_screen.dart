@@ -18,7 +18,7 @@ class HomeScreenWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                  'This app uses an API developed by Albert Alises Sorribas. It has information about every civilization, unit, structure and technology from Age of Empires 2 and its documentation is hosted on the link bellow.',
+                  'This app uses an API developed by Albert Alises Sorribas. It has information about every civilization, unit, structure and technology from Age of Empires 2 and its documentation is hosted in the link bellow.',
                   textAlign: TextAlign.justify),
               ElevatedButton(
                   onPressed: () async {

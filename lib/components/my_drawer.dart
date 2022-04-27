@@ -1,3 +1,4 @@
+import 'package:age_of_empires_info/screens/civilizations_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawerWidget extends StatelessWidget {
@@ -16,17 +17,13 @@ class MyDrawerWidget extends StatelessWidget {
         ListTile(
             title: const Text('Home'),
             onTap: () {
-              Navigator.pushNamed(context, '/');
+              Navigator.pop(context);
+              Navigator.pop(context);
             }),
         ListTile(
             title: const Text('Civilizations'),
             onTap: () {
-              Navigator.pushNamed(context, '/civilizations');
-            }),
-        ListTile(
-            title: const Text('Units'),
-            onTap: () {
-              Navigator.pushNamed(context, '/units');
+              Navigator.pushReplacementNamed(context, 'civilizations');
             })
       ]),
     );

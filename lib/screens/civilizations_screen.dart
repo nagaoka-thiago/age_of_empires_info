@@ -1,11 +1,13 @@
+import 'package:age_of_empires_info/components/my_card.dart';
 import 'package:age_of_empires_info/functions/civilization.dart';
+import 'package:age_of_empires_info/screens/civilization_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../classes/civilization.dart';
 import '../components/my_drawer.dart';
 
-class CivilizationScreenWidget extends StatelessWidget {
-  const CivilizationScreenWidget({Key? key}) : super(key: key);
+class CivilizationsScreenWidget extends StatelessWidget {
+  const CivilizationsScreenWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +22,25 @@ class CivilizationScreenWidget extends StatelessWidget {
                     .map((civilization) => Civilization.fromJson(
                         civilization as Map<String, dynamic>))
                     .toList();
-                return ListView.builder(
+                return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4),
                     itemCount: civilizations.length,
                     itemBuilder: (context, i) {
                       Civilization civilization = civilizations[i];
-                      return Text(civilization.name!);
+                      return CardWidget(
+                          civilization: civilization,
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return CivilizationScreenWidget(
+                                  civilization: civilization);
+                            }));
+                          });
                     });
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator());
               }
             }));
   }
