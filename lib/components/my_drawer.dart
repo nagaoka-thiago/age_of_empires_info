@@ -17,13 +17,12 @@ class MyDrawerWidget extends StatelessWidget {
         ListTile(
             title: const Text('Home'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/');
             }),
         ListTile(
             title: const Text('Civilizations'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, 'civilizations');
+              Navigator.pushNamed(context, 'civilizations');
             })
       ]),
     );

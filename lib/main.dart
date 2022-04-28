@@ -23,11 +23,13 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
               builder: (context) => const CivilizationsScreenWidget());
         } else if (routeSettings.name == 'civilization') {
-          final Civilization civilization =
-              routeSettings.arguments as Civilization;
+          final List args = (routeSettings.arguments as List);
+          final Civilization civilization = args[0] as Civilization;
+          final String civilizationImgSrc = args[1] as String;
           return MaterialPageRoute(
-              builder: (context) =>
-                  CivilizationScreenWidget(civilization: civilization));
+              builder: (context) => CivilizationScreenWidget(
+                  civilization: civilization,
+                  civilizationImgSrc: civilizationImgSrc));
         }
         return null;
       },
