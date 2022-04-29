@@ -29,8 +29,7 @@ class CivilizationScreenWidget extends StatelessWidget {
                 image: NetworkImage(civilizationImgSrc), width: 40, height: 40)
           ]),
         ),
-        body: Center(
-            child: Container(
+        body: Container(
           width: 450,
           height: 550,
           decoration: BoxDecoration(
@@ -282,6 +281,6 @@ class CivilizationScreenWidget extends StatelessWidget {
                   style: const TextStyle(fontSize: 18),
                 ))
           ]),
-        )));
+        ));
   }
 }
