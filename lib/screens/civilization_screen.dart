@@ -1,7 +1,9 @@
 import 'package:age_of_empires_info/classes/technology.dart';
+import 'package:age_of_empires_info/functions/unit.dart';
 import 'package:flutter/material.dart';
 
 import '../classes/civilization.dart';
+import '../classes/unit.dart';
 import '../functions/technology.dart';
 
 class CivilizationScreenWidget extends StatelessWidget {
@@ -41,13 +43,6 @@ class CivilizationScreenWidget extends StatelessWidget {
           child: Column(children: [
             Container(
               margin: const EdgeInsets.only(top: 10),
-              child: Image(
-                  image: NetworkImage(civilizationImgSrc),
-                  width: 70,
-                  height: 70),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10),
               child: Text('Expansion: ' + civilization.expansion!,
                   style: const TextStyle(fontSize: 18)),
             ),
@@ -82,47 +77,197 @@ class CivilizationScreenWidget extends StatelessWidget {
                                         }
                                         final Technology tech =
                                             Technology.fromJson(snapshot.data);
-                                        return Column(children: [
-                                          Text(
-                                            'Name: ' +
-                                                tech.name! +
-                                                (tech.cost != null
-                                                    ? ' (' +
-                                                        (tech.cost!.gold != null
-                                                            ? 'gold: ' +
-                                                                tech.cost!.gold
-                                                                    .toString() +
-                                                                (tech.cost!.food !=
+                                        return Row(
+                                          children: [
+                                            FutureBuilder(
+                                                future: getTechImageAgeI(
+                                                    tech.name!),
+                                                builder: (context1,
+                                                    AsyncSnapshot snapshot1) {
+                                                  if (!snapshot1.hasData) {
+                                                    return const Text('');
+                                                  } else if ((snapshot1.data
+                                                          as String)
+                                                      .isEmpty) {
+                                                    return FutureBuilder(
+                                                        future:
+                                                            getTechImageAgeII(
+                                                                tech.name!),
+                                                        builder: (context2,
+                                                            AsyncSnapshot
+                                                                snapshot2) {
+                                                          if (!snapshot2
+                                                              .hasData) {
+                                                            return const Text(
+                                                                '');
+                                                          } else if ((snapshot2
+                                                                      .data
+                                                                  as String)
+                                                              .isEmpty) {
+                                                            return const Text(
+                                                                '');
+                                                          }
+                                                          return Image(
+                                                              image: NetworkImage(
+                                                                  snapshot2.data
+                                                                      as String),
+                                                              width: 40,
+                                                              height: 40);
+                                                        });
+                                                  }
+                                                  return Image(
+                                                      image: NetworkImage(
+                                                          snapshot1.data
+                                                              as String),
+                                                      width: 40,
+                                                      height: 40);
+                                                }),
+                                            Column(children: [
+                                              Text(
+                                                'Name: ' +
+                                                    tech.name! +
+                                                    (tech.cost != null
+                                                        ? ' (' +
+                                                            (tech.cost!.gold !=
+                                                                    null
+                                                                ? 'gold: ' +
+                                                                    tech.cost!
+                                                                        .gold
+                                                                        .toString() +
+                                                                    (tech.cost!.food !=
+                                                                            null
+                                                                        ? ', food: ' +
+                                                                            tech.cost!.food
+                                                                                .toString() +
+                                                                            ')'
+                                                                        : ')')
+                                                                : (tech.cost!
+                                                                            .food !=
                                                                         null
-                                                                    ? ', food: ' +
+                                                                    ? 'food: ' +
                                                                         tech.cost!
                                                                             .food
-                                                                            .toString() +
-                                                                        ')'
-                                                                    : ')')
-                                                            : (tech.cost!
-                                                                        .food !=
-                                                                    null
-                                                                ? 'food: ' +
-                                                                    tech.cost!
-                                                                        .food
-                                                                        .toString()
-                                                                : ')'))
-                                                    : ''),
-                                            style:
-                                                const TextStyle(fontSize: 12),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                              'Build time: ' +
-                                                  tech.buildTime.toString() +
-                                                  's',
-                                              style: const TextStyle(
-                                                  fontSize: 12)),
-                                          Text(tech.age! + ' age',
-                                              style:
-                                                  const TextStyle(fontSize: 12))
-                                        ]);
+                                                                            .toString()
+                                                                    : ')'))
+                                                        : ''),
+                                                style: const TextStyle(
+                                                    fontSize: 12),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Text(
+                                                  'Build time: ' +
+                                                      tech.buildTime
+                                                          .toString() +
+                                                      's',
+                                                  style: const TextStyle(
+                                                      fontSize: 12)),
+                                              Text(tech.age! + ' age',
+                                                  style: const TextStyle(
+                                                      fontSize: 12))
+                                            ]),
+                                          ],
+                                        );
+                                      });
+                                }))
+                      ],
+                    ))
+                : const Text(''),
+            civilization.uniqueUnit != null &&
+                    civilization.uniqueUnit!.isNotEmpty
+                ? Container(
+                    height: 70,
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text('Unique Unit ',
+                            style: TextStyle(fontSize: 18)),
+                        Flexible(
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: civilization.uniqueUnit!.length,
+                                itemBuilder: (context, i) {
+                                  return FutureBuilder(
+                                      future:
+                                          getUnit(civilization.uniqueUnit![i]),
+                                      builder:
+                                          (context, AsyncSnapshot snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return const Text('');
+                                        }
+                                        final Unit unit =
+                                            Unit.fromJson(snapshot.data);
+                                        return Row(
+                                          children: [
+                                            FutureBuilder(
+                                                future: getUnitImageAgeI(
+                                                    unit.name!),
+                                                builder: (context1,
+                                                    AsyncSnapshot snapshot1) {
+                                                  if (!snapshot1.hasData) {
+                                                    return const Text('');
+                                                  } else if ((snapshot1.data
+                                                          as String)
+                                                      .isEmpty) {
+                                                    return FutureBuilder(
+                                                        future:
+                                                            getUnitImageAgeII(
+                                                                unit.name!),
+                                                        builder: (context2,
+                                                            AsyncSnapshot
+                                                                snapshot2) {
+                                                          if (!snapshot2
+                                                              .hasData) {
+                                                            return const Text(
+                                                                '');
+                                                          } else if ((snapshot2
+                                                                      .data
+                                                                  as String)
+                                                              .isEmpty) {
+                                                            return const Text(
+                                                                '');
+                                                          }
+                                                          return Image(
+                                                              image: NetworkImage(
+                                                                  snapshot2.data
+                                                                      as String),
+                                                              width: 40,
+                                                              height: 40);
+                                                        });
+                                                  }
+                                                  return Image(
+                                                      image: NetworkImage(
+                                                          snapshot1.data
+                                                              as String),
+                                                      width: 40,
+                                                      height: 40);
+                                                }),
+                                            Column(children: [
+                                              Text('Name: ' + unit.name!,
+                                                  style: const TextStyle(
+                                                      fontSize: 12)),
+                                              unit.attack != null
+                                                  ? Text(
+                                                      'Atack: ' +
+                                                          unit.attack
+                                                              .toString(),
+                                                      style: const TextStyle(
+                                                          fontSize: 12))
+                                                  : const Text(''),
+                                              unit.buildTime != null
+                                                  ? Text(
+                                                      'Build time: ' +
+                                                          unit.buildTime
+                                                              .toString() +
+                                                          's',
+                                                      style: const TextStyle(
+                                                          fontSize: 12))
+                                                  : const Text('')
+                                            ]),
+                                          ],
+                                        );
                                       });
                                 }))
                       ],

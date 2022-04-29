@@ -30,15 +30,15 @@ class Civilization {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['expansion'] = this.expansion;
-    data['army_type'] = this.armyType;
-    data['unique_unit'] = this.uniqueUnit;
-    data['unique_tech'] = this.uniqueTech;
-    data['team_bonus'] = this.teamBonus;
-    data['civilization_bonus'] = this.civilizationBonus;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['name'] = name;
+    data['expansion'] = expansion;
+    data['army_type'] = armyType;
+    data['unique_unit'] = uniqueUnit;
+    data['unique_tech'] = uniqueTech;
+    data['team_bonus'] = teamBonus;
+    data['civilization_bonus'] = civilizationBonus;
     return data;
   }
 }

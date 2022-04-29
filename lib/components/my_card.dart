@@ -1,5 +1,4 @@
 import 'package:age_of_empires_info/classes/civilization.dart';
-import 'package:age_of_empires_info/functions/civilization.dart';
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatefulWidget {
@@ -36,12 +35,12 @@ class _CardWidgetState extends State<CardWidget> {
             children: [
               Image(
                   image: NetworkImage(widget.civilizationImgSrc),
-                  width: 10,
-                  height: 10),
+                  width: 20,
+                  height: 20),
               const SizedBox(width: 5),
               Text(
                 widget.civilization.name!,
-                style: const TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 15),
               )
             ],
           )),

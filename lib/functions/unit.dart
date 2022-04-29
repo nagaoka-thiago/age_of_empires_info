@@ -2,15 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 
-Future<Map<String, dynamic>> getTechnology(String url) async {
+Future<Map<String, dynamic>> getUnit(String url) async {
   final response = await Dio().get(url);
 
   return response.data;
 }
 
-Future<String> getTechImageAgeI(String techName) async {
+Future<String> getUnitImageAgeI(String unitName) async {
   final response = await http
-      .get(Uri.parse('https://ageofempires.fandom.com/wiki/' + techName));
+      .get(Uri.parse('https://ageofempires.fandom.com/wiki/' + unitName));
 
   final document = parse(response.body);
   final figures = document.getElementsByClassName('pi-item pi-image');
@@ -28,9 +28,11 @@ Future<String> getTechImageAgeI(String techName) async {
   return Future.value('');
 }
 
-Future<String> getTechImageAgeII(String techName) async {
+Future<String> getUnitImageAgeII(String unitName) async {
   final response = await http.get(Uri.parse(
-      'https://ageofempires.fandom.com/wiki/' + techName + '_(technology)'));
+      'https://ageofempires.fandom.com/wiki/' +
+          unitName +
+          '_(Age_of_Empires_II)'));
 
   final document = parse(response.body);
   final figures = document.getElementsByClassName('pi-item pi-image');

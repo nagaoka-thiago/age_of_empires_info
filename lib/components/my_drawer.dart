@@ -1,4 +1,3 @@
-import 'package:age_of_empires_info/screens/civilizations_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawerWidget extends StatelessWidget {

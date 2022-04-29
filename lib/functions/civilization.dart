@@ -9,9 +9,9 @@ Future<Map<String, dynamic>> getCivilizations() async {
   return response.data;
 }
 
-Future<String> getCivilizationImageAgeI(String civilization_name) async {
+Future<String> getCivilizationImageAgeI(String civilizationName) async {
   final response = await http.get(
-      Uri.parse('https://ageofempires.fandom.com/wiki/' + civilization_name));
+      Uri.parse('https://ageofempires.fandom.com/wiki/' + civilizationName));
 
   final document = parse(response.body);
   final figures = document.getElementsByClassName('pi-item pi-image');
@@ -29,10 +29,10 @@ Future<String> getCivilizationImageAgeI(String civilization_name) async {
   return Future.value('');
 }
 
-Future<String> getCivilizationImageAgeII(String civilization_name) async {
+Future<String> getCivilizationImageAgeII(String civilizationName) async {
   final response = await http.get(Uri.parse(
       'https://ageofempires.fandom.com/wiki/' +
-          civilization_name +
+          civilizationName +
           '_(Age_of_Empires_II)'));
 
   final document = parse(response.body);

@@ -10,9 +10,9 @@ class Cost {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Food'] = this.food;
-    data['Gold'] = this.gold;
+    final Map<String, dynamic> data = {};
+    data['Food'] = food;
+    data['Gold'] = gold;
     return data;
   }
 }

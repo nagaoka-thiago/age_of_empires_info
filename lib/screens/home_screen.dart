@@ -10,14 +10,17 @@ class HomeScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Image(
-                image: NetworkImage(
-                    'https://i.ytimg.com/vi/oLJk_nIMdkc/maxresdefault.jpg'),
-                width: 1200,
-                height: 40)),
+            title: Row(children: const [
+          Text('Age of Empires 2\'s Information',
+              style: TextStyle(fontSize: 12)),
+          Image(
+              image: NetworkImage(
+                  'https://i.ytimg.com/vi/oLJk_nIMdkc/maxresdefault.jpg'),
+              width: 100,
+              height: 40)
+        ])),
         drawer: const MyDrawerWidget(),
-        body: Center(
-            child: Container(
+        body: Container(
           width: 450,
           height: 550,
           decoration: BoxDecoration(
@@ -27,7 +30,7 @@ class HomeScreenWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.4), BlendMode.dstATop))),
-          margin: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -43,6 +46,6 @@ class HomeScreenWidget extends StatelessWidget {
                       'https://age-of-empires-2-api.herokuapp.com/docs/'))
             ],
           ),
-        )));
+        ));
   }
 }
