@@ -27,3 +27,9 @@ This project was developed using:
     - DIO
     - HTTP
     - HTML
+
+To download this project and make changes, you can use the script bellow:
+
+```
+git clone https://github.com/nagaoka-thiago/age_of_empires_info.git
+```
