@@ -156,7 +156,7 @@ class CivilizationScreenWidget extends StatelessWidget {
                                                                         : ')'))
                                                             : ''),
                                                     style: const TextStyle(
-                                                        fontSize: 12),
+                                                        fontSize: 11),
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                   ),
@@ -166,10 +166,10 @@ class CivilizationScreenWidget extends StatelessWidget {
                                                               .toString() +
                                                           's',
                                                       style: const TextStyle(
-                                                          fontSize: 12)),
+                                                          fontSize: 11)),
                                                   Text(tech.age! + ' age',
                                                       style: const TextStyle(
-                                                          fontSize: 12))
+                                                          fontSize: 11))
                                                 ]),
                                               ],
                                             ),
@@ -262,7 +262,7 @@ class CivilizationScreenWidget extends StatelessWidget {
                                                   Column(children: [
                                                     Text('Name: ' + unit.name!,
                                                         style: const TextStyle(
-                                                            fontSize: 12)),
+                                                            fontSize: 11)),
                                                     unit.attack != null
                                                         ? Text(
                                                             'Atack: ' +
@@ -271,7 +271,7 @@ class CivilizationScreenWidget extends StatelessWidget {
                                                             style:
                                                                 const TextStyle(
                                                                     fontSize:
-                                                                        12))
+                                                                        11))
                                                         : const Text(''),
                                                     unit.buildTime != null
                                                         ? Text(
@@ -282,7 +282,7 @@ class CivilizationScreenWidget extends StatelessWidget {
                                                             style:
                                                                 const TextStyle(
                                                                     fontSize:
-                                                                        12))
+                                                                        11))
                                                         : const Text('')
                                                   ]),
                                                 ],
