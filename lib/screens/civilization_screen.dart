@@ -1,7 +1,6 @@
 import 'package:age_of_empires_info/classes/technology.dart';
 import 'package:age_of_empires_info/functions/unit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../classes/civilization.dart';
 import '../classes/unit.dart';
